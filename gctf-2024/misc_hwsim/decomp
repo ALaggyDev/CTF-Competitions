@@ -1,0 +1,67 @@
+uint8_t memory[256];   
+uint8_t r0 = 0;         // [0] ldi r0, 0
+uint8_t r1 = 0;         // [1] ldi r1, 0
+uint8_t r2 = 60;        // [2] ldi r2, 60
+uint8_t r3 = 10;        // [3] ldi r3, 10
+uint8_t r4 = 0;         // 
+uint8_t r5 = 1;         // [4] ldi r5, 1
+j5:
+r4 = input();           // [5] read r4
+memory[r1] = r4;        // [6] store r1, r4
+if (r4 == r3) goto j11; // [7] jeq r4, r3, 11
+r0 += r5;               // [8] add r0, r5
+r1 += r5;               // [9] add r1, r5
+if (r0 < r2) goto j5;   // [10] jl r0, r2, 5
+j11:
+r1 = 0;                 // [11] ldi r1, 0
+r3 = 3;                 // [12] ldi r3, 3
+j13:
+r4 = memory[r1];        // [13] load r4, r1
+r4 += r3;               // [14] add r4, r3
+r2 = 64;                // [15] ldi r2, 64
+r2 += r1;               // [16] add r2, r1
+memory[r2] = r4;        // [17] store r2, r4
+r1 += r5;               // [18] add r1, r5
+if (r1 < r0) goto j13;  // [19] jl r1, r0, 13
+r1 = 0;                 // [20] ldi r1, 0
+j21:
+r2 = 64;                // [21] ldi r2, 64
+r2 += r1;               // [22] add r2, r1        // A: 1, B: 0
+r2 = memory[r2];        // [23] load r2, r2
+output(r2);             // [24] out r2
+r1 += r5;               // [25] add r1, r5        // A: ?, B: 1
+if (r1 < r0) goto j21;  // [26] jl r1, r0, 21
+
+
+
+
+uint8_t memory[256];   
+uint8_t in_length = 0;         // [0] ldi r0, 0
+uint8_t r1 = 0;         // [1] ldi r1, 0
+uint8_t r2 = 60;        // [2] ldi r2, 60
+uint8_t r4 = 0;         // 
+r4 = input();
+memory[0] = r4;
+while (r4 != 0x0A) {
+  in_length++;
+  r1++;
+  if (in_length >= 60) break;
+  r4 = input();
+  memory[r1] = r4;
+}
+r1 = 0;                 // [11] ldi r1, 0
+uint8_t r3 = 3;
+do {
+  r4 = memory[r1];        // [13] load r4, r1
+  r4 += r3;               // [14] add r4, r3
+  r2 = 64;                // [15] ldi r2, 64
+  r2 += r1;               // [16] add r2, r1
+  memory[r2] = r4;        // [17] store r2, r4
+  r1++;               // [18] add r1, r5
+  if (r1 < r0) goto j13;  // [19] jl r1, r0, 13
+} while (r1 < in_length);
+r1 = 0;                 // [20] ldi r1, 0
+do {
+  output(memory[r1 + 64]);
+  r1++;
+} while (r1 < in_length);
