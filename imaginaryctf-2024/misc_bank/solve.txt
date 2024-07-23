@@ -1,0 +1,3 @@
+To be honest, I just use remix ide and metamask to solve this :(
+
+Anyway, you can just deposit 50 wei into the smart contract to solve this.

