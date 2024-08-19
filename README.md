@@ -4,3 +4,4 @@ Repository to store the solutions and writeups of some of the CTF challenges I h
 
 - Google CTF 2024
 - ImaginaryCTF 2024
+- IdekCTF 2024
