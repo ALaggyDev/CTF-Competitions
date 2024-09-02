@@ -1,0 +1,6 @@
+services:
+  challenge:
+    build: .
+    privileged: true
+    ports:
+      - "1337:1337"
